@@ -1,0 +1,17 @@
+torch
+torchvision
+transformers
+rembg
+trimesh
+omegaconf==2.3.0
+einops==0.7.0
+PyMCubes
+huggingface-hub
+imageio[ffmpeg]
+moderngl==5.10.0
+fastapi
+uvicorn
+python-multipart
+numpy
+Pillow
+gradio
