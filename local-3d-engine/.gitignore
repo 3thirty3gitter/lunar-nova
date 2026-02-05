@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+outputs/
+temp_inputs/
+test_output/
+.DS_Store
+.env
+*.glb
+*.obj
+TriposR/__pycache__/
+TriposR/output/

@@ -68,10 +68,19 @@ class Local3DEngine:
             scene_codes = self.model([processed_image], device=self.device)
         
         # Export meshes
-        meshes = self.model.extract_mesh(scene_codes, resolution=256)
+        # Lowering threshold back to 30.0 for more volume/stability
+        meshes = self.model.extract_mesh(scene_codes, has_vertex_color=True, resolution=512, threshold=30.0)
         
         output_files = []
         for i, mesh in enumerate(meshes):
+            # Apply Laplacian smoothing to remove marching cubes artifacts
+            try:
+                import trimesh.smoothing
+                # Moderate smoothing to keep the shape but lose the noise
+                trimesh.smoothing.filter_laplacian(mesh, iterations=15, lamb=0.1)
+            except Exception as e:
+                print(f"Smoothing failed: {e}")
+
             save_path = os.path.join(output_dir, f"model_{i}.glb")
             mesh.export(save_path)
             output_files.append(save_path)
