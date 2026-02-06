@@ -31,7 +31,27 @@ Open this URL in your browser to access the Web UI.
 
 ## API
 
--   `POST /generate`: Upload a file (`file` form-data) to generate a model. Returns the `.glb` file.
+-   `POST /generate`: Upload one or more images (`files` form-data) to generate a model. Returns the `.glb` file.
+    - Optional form fields:
+        - `resolution`: `256` (fast) or `512` (high). Defaults to `512`.
+        - `smoothing`: `none`, `low`, `medium`, or `high`. Defaults to `medium`.
+        - `threshold`: float between `15` and `45` (density threshold). Defaults to `30.0`.
+        - `texture_bake`: `true` or `false` (experimental). Defaults to `false`.
+
+-   `POST /generate_async`: Upload one or more images to start a background job. Returns `{ job_id, status }`.
+    - Optional form fields:
+        - `resolution`: `256` (fast) or `512` (high). Defaults to `512`.
+        - `smoothing`: `none`, `low`, `medium`, or `high`. Defaults to `medium`.
+        - `threshold`: float between `15` and `45` (density threshold). Defaults to `30.0`.
+        - `texture_bake`: `true` or `false` (experimental). Defaults to `false`.
+
+-   `GET /status/{job_id}`: Check background job status.
+
+-   `GET /result/{job_id}`: Download the `.glb` when status is `complete`.
+
+-   `GET /jobs`: List recent jobs (default limit 25).
+
+Job history is persisted to `outputs/jobs.json` so recent runs survive restarts.
 
 ## Troubleshooting
 
