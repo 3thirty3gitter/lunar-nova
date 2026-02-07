@@ -37,6 +37,7 @@ Open this URL in your browser to access the Web UI.
         - `smoothing`: `none`, `low`, `medium`, or `high`. Defaults to `medium`.
         - `threshold`: float between `15` and `45` (density threshold). Defaults to `30.0`.
         - `texture_bake`: `true` or `false` (experimental). Defaults to `false`.
+        - Texture baking requires `xatlas` and `moderngl` to be installed.
 
 -   `POST /generate_async`: Upload one or more images to start a background job. Returns `{ job_id, status }`.
     - Optional form fields:
@@ -44,6 +45,7 @@ Open this URL in your browser to access the Web UI.
         - `smoothing`: `none`, `low`, `medium`, or `high`. Defaults to `medium`.
         - `threshold`: float between `15` and `45` (density threshold). Defaults to `30.0`.
         - `texture_bake`: `true` or `false` (experimental). Defaults to `false`.
+        - Texture baking requires `xatlas` and `moderngl` to be installed.
 
 -   `GET /status/{job_id}`: Check background job status.
 
@@ -52,6 +54,14 @@ Open this URL in your browser to access the Web UI.
 -   `GET /jobs`: List recent jobs (default limit 25).
 
 Job history is persisted to `outputs/jobs.json` so recent runs survive restarts.
+
+## Multi-View Notes
+
+Multi-image input is supported when the installed TripoSR build accepts a list of images. If your build only supports a single image, the engine raises a clear error by default. To fall back to the first image automatically, set:
+
+```bash
+TRIPOSR_MULTIVIEW_FALLBACK=first
+```
 
 ## Troubleshooting
 

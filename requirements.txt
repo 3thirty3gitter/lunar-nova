@@ -9,6 +9,7 @@ PyMCubes
 huggingface-hub
 imageio[ffmpeg]
 moderngl==5.10.0
+xatlas
 fastapi
 uvicorn
 python-multipart

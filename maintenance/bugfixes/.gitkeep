@@ -1,0 +1,6 @@
+# This directory stores individual bug reports and fixes
+#
+# Each bug should have its own markdown file following the naming convention:
+# YYYY-MM-DD_brief-description.md
+#
+# See DAILY_OPERATIONS_PROTOCOL.md for the bug reporting template
